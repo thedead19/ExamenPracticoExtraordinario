@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: actividad1-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: actividad1
+  template:
+    metadata:
+      labels:
+        app: actividad1
+    spec:
+      containers:
+        - name: actividad1
+          image: actividad1-docker:1.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3000

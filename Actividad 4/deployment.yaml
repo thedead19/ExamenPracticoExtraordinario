@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: actividad4-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: actividad4
+  template:
+    metadata:
+      labels:
+        app: actividad4
+    spec:
+      containers:
+      - name: web-html
+        image: actividad1-docker:1.0
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 3000
+
+      - name: imagen-updater
+        image: actividad2-docker:1.0
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+        - name: imagen-compartida
+          mountPath: /app
+
+      volumes:
+      - name: imagen-compartida
+        emptyDir: {}

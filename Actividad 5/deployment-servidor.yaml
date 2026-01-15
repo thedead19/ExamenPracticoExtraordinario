@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: actividad5-servidor
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: servidor
+  template:
+    metadata:
+      labels:
+        app: servidor
+    spec:
+      containers:
+      - name: servidor
+        image: servidor:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: imagenes
+          mountPath: /usr/share/nginx/html
+      volumes:
+      - name: imagenes
+        persistentVolumeClaim:
+          claimName: actividad5-pvc

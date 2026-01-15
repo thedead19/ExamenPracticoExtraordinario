@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: actividad5-descargador
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: descargador
+  template:
+    metadata:
+      labels:
+        app: descargador
+    spec:
+      containers:
+      - name: descargador
+        image: descargador:latest
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+        - name: imagenes
+          mountPath: /app
+      volumes:
+      - name: imagenes
+        persistentVolumeClaim:
+          claimName: actividad5-pvc

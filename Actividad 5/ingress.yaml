@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: actividad5-ingress
+spec:
+  rules:
+  - host: actividad5.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: actividad5-service
+            port:
+              number: 80

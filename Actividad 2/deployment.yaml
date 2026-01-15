@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: actividad2-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: actividad2
+  template:
+    metadata:
+      labels:
+        app: actividad2
+    spec:
+      containers:
+      - name: actividad2
+        image: actividad2-docker:1.0
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 80
